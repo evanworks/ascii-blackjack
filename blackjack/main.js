@@ -429,12 +429,14 @@
 		const cD2 = document.getElementById("c2");
 		const cD3 = document.getElementById("c3");
 		
-		
+	
 		let cardsH = [];
 		let cardsC = [];
 		
 		var c2C = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
 		
+    let allowTerminalMessages = true;
+
 		function deal() {
 		  var c1H = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
 		  hD.innerHTML += cardsD[cardsN.indexOf(c1H)];
@@ -491,7 +493,7 @@
 		function hit() {
 		  if (turn === 0) {
 		  	if (standH === 0 || standC === 1) {
-          terminalEvent('Player has chosen to hit.')
+          terminalEvent('Player has hit.')
 		      var cxH = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
 		      const newCardDisplayH = document.createElement("pre");
 		      newCardDisplayH.innerHTML = cardsD[cardsN.indexOf(cxH)];
@@ -507,7 +509,7 @@
 		    setTimeout(computerAI, 4000);
 		  } else if (turn === 1) {
 		    if (standC === 0 || standH === 1) {
-          terminalEvent('Computer has chosen to hit.')
+          terminalEvent('Computer has hit.')
 		      var cxC = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
 		      const newCardDisplayC = document.createElement("pre");
 		      newCardDisplayC.innerHTML = cardsD[cardsN.indexOf(cxC)];
@@ -528,9 +530,13 @@
 		      }
 		      cardsC.push(cxC);
 		    }
-		    turn = 0;
+        if (standH == 0) {
+          turn = 0;
+        } else {
+          setTimeout(computerAI, 2000);
+        }
 		  }
-		  setTimeout(function(){check()}, 4000);
+		  setTimeout(check, 4000);
 		}
 		
 		
@@ -577,14 +583,6 @@
 		    totalH += aH;
 		  }
 		
-		  if (totalH > 21) {
-        terminalEvent('Player has busted. Computer won with ' + totalC + ' points.')
-		    end("C");
-		  } else if (totalH === 21) {
-		    terminalEvent('Player beat computer with 21 points.')
-        end("H");
-		  }
-		
 		  var totalC = 0;
 		  let x = 0;
 		  while (x < cardsC.length) {
@@ -613,29 +611,38 @@
         terminalEvent('Computer beat player with 21 points.')
 		    end("C");
 		  }
-		
+      if (totalH > 21) {
+        terminalEvent('Player has busted. Computer won with ' + totalC + ' points.')
+		    end("C");
+		  } else if (totalH === 21) {
+		    terminalEvent('Player beat computer with 21 points.')
+        end("H");
+		  }
 		  if (standH === 1 && standC === 1) {
 		    if (totalH > totalC) {
-          terminalEvent('Player has beat computer with' + totalH + ' points.')
+          terminalEvent('Player has beat computer with ' + totalH + ' points.')
 		      end("H")
 		    } else if (totalC > totalH) {
-          terminalEvent('Computer has beat player with' + totalC + ' points.')
+          terminalEvent('Computer has beat player with ' + totalC + ' points.')
 		      end("C")
 		    } else {
           terminalEvent('Player and computer have tied.')
 		      end("T")
 		    }
 		  }
-		  document.getElementById("prolstalist").innerHTML = cardsC;
-		  document.getElementById("prolstalist").innerHTML += " "
-		  document.getElementById("prolstalist").innerHTML += cardsH;
 		}
 		
 		function end(person) {
-		  document.getElementById("winner").innerHTML = "This person won: " + person;
+      allowTerminalMessages = false;
 		  cD2.innerHTML = cardsD[cardsN.indexOf(c2C)];
 		  cD3.style.display = "none";
 		  document.getElementById("hiddenCards").style.display = "block";
+      document.getElementById("hitbtn").style.color = "black";
+      document.getElementById("hitbtn").style.border = "1.5px solid black";
+      document.getElementById("hitbtn").style.cursor = "pointer";
+      document.getElementById("standbtn").style.color = "black";
+      document.getElementById("standbtn").style.border = "1.5px solid black";
+      document.getElementById("standbtn").style.cursor = "pointer";
 		}
 		
 		function stand() {
@@ -645,6 +652,12 @@
 		    console.log("H is standing");
 		    turn = 1;
 		    setTimeout(computerAI, 4000);
+        document.getElementById("hitbtn").style.color = "darkgrey";
+        document.getElementById("hitbtn").style.border = "1px solid darkgrey";
+        document.getElementById("hitbtn").style.cursor = "auto";
+        document.getElementById("standbtn").style.color = "darkgrey";
+        document.getElementById("standbtn").style.border = "1px solid darkgrey";
+        document.getElementById("standbtn").style.cursor = "auto";
 		  } else {
         if (!standC == 1) {
           terminalEvent('Computer has chosen to stand.')
@@ -654,20 +667,22 @@
 		    turn = 0;
 		  }
 		  if (standH === 1 && standC === 1) {
-        setTimeout(function(){check()}, 4000);
+        setTimeout(check, 4000);
 		  }
 		}
 
 function terminalEvent(msg) {
-  let terminal = document.getElementById("terminal");
-  console.log(terminal)
-  let msgtxt = document.createElement("span");
-  terminal.appendChild(msgtxt)
-  typed = new Typed(msgtxt, {
-    strings: [msg + "<div style='height: 5px;'>"],
-    typeSpeed: 40,
-    showCursor: false,
-  });
+  if (allowTerminalMessages) {
+    let terminal = document.getElementById("terminal");
+    console.log(terminal)
+    let msgtxt = document.createElement("span");
+    terminal.appendChild(msgtxt)
+    typed = new Typed(msgtxt, {
+      strings: [msg + "<div style='height: 5px;'>"],
+      typeSpeed: 40,
+      showCursor: false,
+    });
+  }
 }
 terminalEvent('Welcome to ASCII Blackjack.')
 setTimeout(deal, 2000)
