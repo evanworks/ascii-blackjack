@@ -1,1 +1,73 @@
-
+pre { 
+  font-family: monospace; 
+  font-size: 15px; 
+  border: none; 
+  line-height: 20px; 
+  display: inline-block;
+  position: absolute;
+}
+#prePanel {
+  font-family: monospace;
+}
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  border: 1.5px solid black;
+  padding: 10px;
+  width: 150px;
+  margin-bottom: 20px;
+}
+button:hover {
+  border: 1.5px solid dimgrey;
+}
+button:active {
+  color: grey;
+  border: 1.5px solid grey;
+  transform: scale(0.95);
+}
+h1 {
+  font-family: monospace;
+  font-size: 50px;
+  margin-top: 15vh;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+#computercards {
+  position: fixed;
+  width: 1000px;
+  height: 200px;
+  top: 75px;
+  left: 300px;
+}
+#playercards {
+  position: fixed;
+  height: 200px;
+  width: 1000px;
+  top: calc(100vh - 250px);
+  left: 300px;
+}
+#controls {
+  z-index: 100;
+  position: fixed;
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+  top: calc(100vh - 350px);
+  left: 50px;
+}
+#terminal {
+  overflow: scroll;
+  z-index: 100;
+  position: fixed;
+  border: 1px solid black;
+  height: 180px;
+  width: 180px;
+  top: 150px;
+  left: 50px;
+  font-family: monospace;
+  padding: 10px;
+}
