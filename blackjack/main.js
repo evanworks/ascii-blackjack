@@ -1,4 +1,10 @@
-let money = 100;
+    if (localStorage.getItem("money") == "NaN" || localStorage.getItem("money") == undefined) {
+      money = 100;
+      console.log("yes")
+    } else {
+      money = localStorage.getItem("money");
+    }
+    let gameResult = false;
 		let turn = 0;
 		let standH = 0;
 		let standC = 0;
@@ -434,6 +440,7 @@ let money = 100;
 		
     let allowTerminalMessages = true;
 
+
 		function deal() {
 		  var c1H = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
 		  hD.innerHTML += cardsD[cardsN.indexOf(c1H)];
@@ -503,6 +510,7 @@ let money = 100;
 		      cardsH.push(cxH);
 		    }
 		    turn = 1;
+        toggleButtons(0)
 		    setTimeout(computerAI, 4000);
 		  } else if (turn === 1) {
 		    if (standC === 0 || standH === 1) {
@@ -529,7 +537,9 @@ let money = 100;
 		    }
         if (standH == 0) {
           turn = 0;
+          toggleButtons(1)
         } else {
+          toggleButtons(0)
           setTimeout(computerAI, 2000);
         }
 		  }
@@ -552,6 +562,7 @@ let money = 100;
 		      hit();
 		    }
 		  }
+      toggleButtons(1)
 		}
 		
 		
@@ -630,16 +641,30 @@ let money = 100;
 		}
 		
 		function end(person) {
-      allowTerminalMessages = false;
-		  cD2.innerHTML = cardsD[cardsN.indexOf(c2C)];
-		  cD3.style.display = "none";
-		  document.getElementById("hiddenCards").style.display = "block";
-      document.getElementById("hitbtn").style.color = "black";
-      document.getElementById("hitbtn").style.border = "1.5px solid black";
-      document.getElementById("hitbtn").style.cursor = "pointer";
-      document.getElementById("standbtn").style.color = "black";
-      document.getElementById("standbtn").style.border = "1.5px solid black";
-      document.getElementById("standbtn").style.cursor = "pointer";
+      if (gameResult == false) {
+        allowTerminalMessages = false;
+        cD2.innerHTML = cardsD[cardsN.indexOf(c2C)];
+        cD3.style.display = "none";
+        document.getElementById("hiddenCards").style.display = "block";
+        document.getElementById("hitbtn").style.color = "darkgrey";
+        document.getElementById("hitbtn").style.border = "1px solid darkgrey";
+        document.getElementById("hitbtn").style.cursor = "auto";
+        document.getElementById("hitbtn").disabled = true;
+        document.getElementById("standbtn").style.color = "darkgrey";
+        document.getElementById("standbtn").style.border = "1px solid darkgrey";
+        document.getElementById("standbtn").style.cursor = "auto";
+        document.getElementById("standbtn").disabled = true;
+        if (person == "H") {
+          money += 100;
+        } else if (person == "C") {
+          money -= 100;
+        }
+        gameResult = true;
+        setTimeout(function() {
+          document.getElementById("game").style.display = "none";
+        }, 6000)
+        setTimeout(fadeIn, 6000)
+      }
 		}
 		
 		function stand() {
@@ -649,12 +674,7 @@ let money = 100;
 		    console.log("H is standing");
 		    turn = 1;
 		    setTimeout(computerAI, 4000);
-        document.getElementById("hitbtn").style.color = "darkgrey";
-        document.getElementById("hitbtn").style.border = "1px solid darkgrey";
-        document.getElementById("hitbtn").style.cursor = "auto";
-        document.getElementById("standbtn").style.color = "darkgrey";
-        document.getElementById("standbtn").style.border = "1px solid darkgrey";
-        document.getElementById("standbtn").style.cursor = "auto";
+        toggleButtons(0)
 		  } else {
         if (!standC == 1) {
           terminalEvent('Computer has chosen to stand.')
@@ -662,6 +682,7 @@ let money = 100;
 		    standC = 1;
 		    console.log("C is standing");
 		    turn = 0;
+        toggleButtons(1)
 		  }
 		  if (standH === 1 && standC === 1) {
         setTimeout(check, 2000);
@@ -683,22 +704,62 @@ function terminalEvent(msg) {
 }
 z = 1
 function startGame() {
+  toggleButtons(1)
   z = 1;
   document.getElementById('game').style.display = 'block';
-  fadeIn();
+  fadeOut();
   terminalEvent('Welcome to ASCII Blackjack.')
   setTimeout(deal, 2000)
 }
-function fadeIn() {
+function fadeOut() {
   z -= 0.1;
 
   document.getElementById("title").style.opacity = z;
   if (z > 0) {
+    setTimeout(fadeOut, 10);
+  }
+}
+function fadeIn() {
+  z += 0.1;
+
+  document.getElementById("title").style.opacity = z;
+  if (z < 1) {
     setTimeout(fadeIn, 10);
   }
 }
+
 function openShop() {
   z = 1;
   document.getElementById('shop').style.display = 'block';
-  fadeIn();
+  fadeOut();
+  localStorage.clear()
 }
+
+function toggleButtons(toggle) {
+  if (toggle == 0) {
+    document.getElementById("hiddenCards").style.display = "block";
+    document.getElementById("hitbtn").style.color = "darkgrey";
+    document.getElementById("hitbtn").style.border = "1px solid darkgrey";
+    document.getElementById("hitbtn").style.cursor = "auto";
+    document.getElementById("hitbtn").disabled = true;
+    document.getElementById("standbtn").style.color = "darkgrey";
+    document.getElementById("standbtn").style.border = "1px solid darkgrey";
+    document.getElementById("standbtn").style.cursor = "auto";
+    document.getElementById("standbtn").disabled = true;
+  } else {
+    document.getElementById("hiddenCards").style.display = "block";
+    document.getElementById("hitbtn").style.color = "black";
+    document.getElementById("hitbtn").style.border = "1.5px solid black";
+    document.getElementById("hitbtn").style.cursor = "pointer";
+    document.getElementById("hitbtn").disabled = false;
+    document.getElementById("standbtn").style.color = "black";
+    document.getElementById("standbtn").style.border = "1.5px solid black";
+    document.getElementById("standbtn").style.cursor = "pointer";
+    document.getElementById("standbtn").disabled = false;
+  }
+}
+
+setInterval(function() {
+  document.getElementById("money").innerHTML = "$" + money;
+  localStorage.setItem("money", money)
+}, 1000)
