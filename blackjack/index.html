@@ -10,28 +10,47 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 	</head>
 	<body>
-    <div id="terminal">
+    <div id="money">$100</div>
+    <div id="title">
+      <center>
+        <div id="name">ASCII Blackjack</div>
+        <button class="playbtn" onclick="startGame()" style="margin-right: 10px;">PLAY</button>
+        <button class="playbtn" onclick="openShop()">SHOP</button>
+      </center>
     </div>
-    <div id="computercards">
-      <pre id="c1" style="left: 0px;"></pre>
-		  <pre id="c2" style="left: 100px;"></pre>
-		  <pre id="c3" style="left: 200px;"></pre>
-		  <div id="hiddenCards" style="display: none; position: absolute; left: 200px;"></div>
+    <div id="game" style="display: none;">
+      <div id="terminal">
+      </div>
+      <div id="computercards">
+        <pre id="c1" style="left: 0px;"></pre>
+        <pre id="c2" style="left: 100px;"></pre>
+        <pre id="c3" style="left: 200px;"></pre>
+        <div id="hiddenCards" style="display: none; position: absolute; left: 200px;"></div>
+      </div>
+      <br/>
+      <div id="computerCards" style="display: inline-block; position: absolute; left: 100px;">
+      </div>
+      <div id="controls">
+        <pre id="prePanel" style="left: -50px;">
+          <button onclick="deal(); terminalEvent('Dunno why you pressed this')" style="margin-left: -15px;">DEAL</button>
+          <button id="hitbtn" onclick="hit()" style="margin-left: -15px;">HIT</button>
+          <button id="standbtn" onclick="stand()" style="margin-left: -15px;">STAND</button>
+        </pre>
+      </div>
+      <div id="playercards">
+        <pre id="h1"></pre>
+        <pre id="h2" style="left: 100px;"></pre>
+        <div id="newCards" style="position: absolute; left: 200px;"></div>
+      </div>
     </div>
-		<br/>
-		<div id="computerCards" style="display: inline-block; position: absolute; left: 100px;">
-		</div>
-    <div id="controls">
-      <pre id="prePanel" style="left: -50px;">
-        <button onclick="deal(); terminalEvent('Dunno why you pressed this')">DEAL</button>
-        <button id="hitbtn" onclick="hit()">HIT</button>
-        <button id="standbtn" onclick="stand()">STAND</button>
-      </pre>
-    </div>
-    <div id="playercards">
-      <pre id="h1"></pre>
-		  <pre id="h2" style="left: 100px;"></pre>
-		  <div id="newCards" style="position: absolute; left: 200px;"></div>
+    <div id="shop" style="display: none;">
+      SHOP
+      <br/><br/>
+      no stuff here yet :/
+      <br/><br/>
+      <br/><br/>
+      <br/><br/>
+      [insert promotion here]
     </div>
   </body>
   <script src="main.js"></script>

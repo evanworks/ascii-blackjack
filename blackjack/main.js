@@ -1,7 +1,4 @@
-    // N stands for a numerical or a computer value
-		// D stands for a display or onscreen value
-		// H stands for human values
-		// C stands for computer values or lowercase c stands for card
+let money = 100;
 		let turn = 0;
 		let standH = 0;
 		let standC = 0;
@@ -536,7 +533,7 @@
           setTimeout(computerAI, 2000);
         }
 		  }
-		  setTimeout(check, 4000);
+		  setTimeout(check, 2000);
 		}
 		
 		
@@ -667,7 +664,7 @@
 		    turn = 0;
 		  }
 		  if (standH === 1 && standC === 1) {
-        setTimeout(check, 4000);
+        setTimeout(check, 2000);
 		  }
 		}
 
@@ -684,5 +681,24 @@ function terminalEvent(msg) {
     });
   }
 }
-terminalEvent('Welcome to ASCII Blackjack.')
-setTimeout(deal, 2000)
+z = 1
+function startGame() {
+  z = 1;
+  document.getElementById('game').style.display = 'block';
+  fadeIn();
+  terminalEvent('Welcome to ASCII Blackjack.')
+  setTimeout(deal, 2000)
+}
+function fadeIn() {
+  z -= 0.1;
+
+  document.getElementById("title").style.opacity = z;
+  if (z > 0) {
+    setTimeout(fadeIn, 10);
+  }
+}
+function openShop() {
+  z = 1;
+  document.getElementById('shop').style.display = 'block';
+  fadeIn();
+}
