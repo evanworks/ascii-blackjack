@@ -540,10 +540,10 @@
           toggleButtons(1)
         } else {
           toggleButtons(0)
-          setTimeout(computerAI, 2000);
+          setTimeout(computerAI, 3000);
         }
 		  }
-		  setTimeout(check, 2000);
+		  setTimeout(check, 1000);
 		}
 		
 		
@@ -655,6 +655,7 @@
         document.getElementById("standbtn").style.cursor = "auto";
         document.getElementById("standbtn").disabled = true;
         if (person == "H") {
+          money = parseInt(money)
           money += 100;
         } else if (person == "C") {
           money -= 100;
@@ -663,6 +664,7 @@
         setTimeout(function() {
           document.getElementById("game").style.display = "none";
         }, 6000)
+        z = 0
         setTimeout(fadeIn, 6000)
       }
 		}
@@ -737,7 +739,6 @@ function openShop() {
 
 function toggleButtons(toggle) {
   if (toggle == 0) {
-    document.getElementById("hiddenCards").style.display = "block";
     document.getElementById("hitbtn").style.color = "darkgrey";
     document.getElementById("hitbtn").style.border = "1px solid darkgrey";
     document.getElementById("hitbtn").style.cursor = "auto";
@@ -747,7 +748,6 @@ function toggleButtons(toggle) {
     document.getElementById("standbtn").style.cursor = "auto";
     document.getElementById("standbtn").disabled = true;
   } else {
-    document.getElementById("hiddenCards").style.display = "block";
     document.getElementById("hitbtn").style.color = "black";
     document.getElementById("hitbtn").style.border = "1.5px solid black";
     document.getElementById("hitbtn").style.cursor = "pointer";
@@ -762,4 +762,13 @@ function toggleButtons(toggle) {
 setInterval(function() {
   document.getElementById("money").innerHTML = "$" + money;
   localStorage.setItem("money", money)
+  if (money <= 0) {
+    setTimeout(function() {
+      setInterval(function() {
+        localStorage.clear();
+      })
+      money = 100;
+      location.reload()
+    }, 4000)
+  }
 }, 1000)
