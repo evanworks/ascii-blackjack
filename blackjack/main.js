@@ -435,24 +435,33 @@
 	
 		let cardsH = [];
 		let cardsC = [];
-		
-		var c2C = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
+
+    c2Cseq = Math.floor(Math.random() * (cardsN.length - 0) + 0); 
+		var c2C = cardsN[c2Cseq];
 		
     let allowTerminalMessages = true;
 
 
 		function deal() {
-		  var c1H = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
-		  hD.innerHTML += cardsD[cardsN.indexOf(c1H)];
-		  var flag = cardsN.indexOf(c1H);
+      c1Hseq = Math.floor(Math.random() * cardsN.length);
+		  c1H = cardsN[c1Hseq];
+		  hD.innerHTML += cardsD[c1Hseq];
+      if (hD.innerHTML.includes("♥") || hD.innerHTML.includes("♦")) {
+        hD.style.color = "red";
+      }
+		  flag = cardsN[c1Hseq];
 		  if (flag > -1) { 
 		    cardsN.splice(flag, 1); 
 		    cardsD.splice(flag, 1); 
 		  }
-		
-		  var c2H = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
-		  hD2.innerHTML += cardsD[cardsN.indexOf(c2H)];
-		  flag = cardsN.indexOf(c2H);
+
+      cH2seq = Math.floor(Math.random() * cardsN.length);
+		  c2H = cardsN[cH2seq];
+		  hD2.innerHTML += cardsD[cH2seq];
+      if (hD2.innerHTML.includes("♥") || hD2.innerHTML.includes("♦")) {
+        hD2.style.color = "red";
+      }
+		  flag = cardsN[cH2seq];
 		  if (flag > -1) { 
 		    cardsN.splice(flag, 1); 
 		    cardsD.splice(flag, 1); 
@@ -463,10 +472,14 @@
 		    cardsH.splice(cardsC.indexOf("A"), 1);
 		    cardsH.push(11); 
 		  }
-		
-		  var c1C = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
-		  cD.innerHTML += cardsD[cardsN.indexOf(c1C)];
-		  flag = cardsN.indexOf(c1C);
+
+      c1Cseq = Math.floor(Math.random() * cardsN.length);
+		  var c1C = cardsN[c1Cseq];
+		  cD.innerHTML += cardsD[c1Cseq];
+      if (cD.innerHTML.includes("♥") || cD.innerHTML.includes("♦")) {
+        cD.style.color = "red";
+      }
+		  flag = cardsN[c1Cseq];
 		  if (flag > -1) { 
 		    cardsN.splice(flag, 1); 
 		    cardsD.splice(flag, 1); 
@@ -481,7 +494,7 @@
 		|XXXXXXXX|
 		|XXXXXXXX| 
 		\`--------'`;
-		  flag = cardsN.indexOf(c2C);
+		  flag = cardsN[c2Cseq];
 		  if (flag > -1) { 
 		    cardsN.splice(flag, 1); 
 		    cardsD.splice(flag, 1); 
@@ -501,6 +514,10 @@
 		      var cxH = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
 		      const newCardDisplayH = document.createElement("pre");
 		      newCardDisplayH.innerHTML = cardsD[cardsN.indexOf(cxH)];
+          ncdHt = newCardDisplayH.innerHTML;
+          if (ncdHt.includes("♥") || ncdHt.includes("♦")) {
+            newCardDisplayH.style.color = "red";
+          }
 		      document.getElementById("newCards").appendChild(newCardDisplayH);
 		      var flag = cardsN.indexOf(cxH);
 		      if (flag > -1) { 
@@ -643,7 +660,7 @@
 		function end(person) {
       if (gameResult == false) {
         allowTerminalMessages = false;
-        cD2.innerHTML = cardsD[cardsN.indexOf(c2C)];
+        cD2.innerHTML = cardsD[c2Cseq];
         cD3.style.display = "none";
         document.getElementById("hiddenCards").style.display = "block";
         document.getElementById("hitbtn").style.color = "darkgrey";
@@ -772,3 +789,10 @@ setInterval(function() {
     }, 4000)
   }
 }, 1000)
+function shuffleArray(array, otherarray) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+      [otherarray[i], otherarray[j]] = [otherarray[j], otherarray[i]];
+  }
+}
