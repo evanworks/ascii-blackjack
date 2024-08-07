@@ -6,6 +6,7 @@
     }
     let gameResult = false;
 		let turn = 0;
+    let bet = 100;
 		let standH = 0;
 		let standC = 0;
 		let cardsN = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, "A", "A", "A", "A"];
@@ -412,18 +413,18 @@
 		`
 		.--------.
 		|A _  _  |
-		| ( \/ ) |
-		|  \  /  |
-		|   \/   |
+		| ( \\/ ) |
+		|  \\  /  |
+		|   \\/   |
 		|       A|
 		\`--------'`,
 		`
 		.--------.          
 		|A       |
-		|   /\   |
-		|  /  \  |
-		|  \  /  |
-		|   \/  A|
+		|   /\\   |
+		|  /  \\  |
+		|  \\  /  |
+		|   \\/  A|
 		\`--------'`
 		];
 		const hD = document.getElementById("h1");
@@ -518,6 +519,10 @@
           if (ncdHt.includes("♥") || ncdHt.includes("♦")) {
             newCardDisplayH.style.color = "red";
           }
+          if (cardsH.length >= 3) {
+            newCardDisplayH.style.position = "absolute";
+            newCardDisplayH.style.left = (cardsH.length * 100) - 200 + "px";
+          }
 		      document.getElementById("newCards").appendChild(newCardDisplayH);
 		      var flag = cardsN.indexOf(cxH);
 		      if (flag > -1) { 
@@ -535,6 +540,10 @@
 		      var cxC = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
 		      const newCardDisplayC = document.createElement("pre");
 		      newCardDisplayC.innerHTML = cardsD[cardsN.indexOf(cxC)];
+          if (cardsC.length >= 3) {
+            newCardDisplayC.style.position = "absolute";
+            newCardDisplayC.style.left = (cardsC.length * 100) - 200 + "px";
+          }
 		      document.getElementById("hiddenCards").appendChild(newCardDisplayC);
 		      cD3.innerHTML += `
 		.--------.
@@ -598,7 +607,7 @@
 		      i++;
 		    }
 		  }
-		  if (aH === 1) {
+		  if (aH == 1) {
 		    if (totalH > 10) {
 		      totalH += 1;
 		    } else {
@@ -620,7 +629,7 @@
 		    }
 		  }
 		
-		  if (aC === 1) {
+		  if (aC == 1) {
 		    if (totalC > 10) {
 		      totalC += 1;
 		    } else {
@@ -629,13 +638,6 @@
 		  } else if (aH > 1) {
 		    totalH += aH;
 		  }
-		  if (totalC > 21) {
-        terminalEvent('Computer busted. Player won with ' + totalH + ' points.')
-		    end("H");
-		  } else if (totalC === 21) {
-        terminalEvent('Computer beat player with 21 points.')
-		    end("C");
-		  }
       if (totalH > 21) {
         terminalEvent('Player has busted. Computer won with ' + totalC + ' points.')
 		    end("C");
@@ -643,6 +645,13 @@
 		    terminalEvent('Player beat computer with 21 points.')
         end("H");
 		  }
+		  if (totalC > 21) {
+        terminalEvent('Computer busted. Player won with ' + totalH + ' points.')
+		    end("H");
+		  } else if (totalC === 21) {
+        terminalEvent('Computer beat player with 21 points.')
+		    end("C");
+      }
 		  if (standH === 1 && standC === 1) {
 		    if (totalH > totalC) {
           terminalEvent('Player has beat computer with ' + totalH + ' points.')
@@ -673,13 +682,14 @@
         document.getElementById("standbtn").disabled = true;
         if (person == "H") {
           money = parseInt(money)
-          money += 100;
+          money += bet;
         } else if (person == "C") {
-          money -= 100;
+          money -= bet;
         }
         gameResult = true;
         setTimeout(function() {
           document.getElementById("game").style.display = "none";
+          location.reload()
         }, 6000)
         z = 0
         setTimeout(fadeIn, 6000)
@@ -726,6 +736,8 @@ function startGame() {
   toggleButtons(1)
   z = 1;
   document.getElementById('game').style.display = 'block';
+  bet = prompt("what is ur bet?")
+  bet = parseInt(bet);
   fadeOut();
   terminalEvent('Welcome to ASCII Blackjack.')
   setTimeout(deal, 2000)
