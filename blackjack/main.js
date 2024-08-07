@@ -799,7 +799,7 @@ setInterval(function() {
       money = 100;
       location.reload()
     }, 4000)
-  }
+  } 
 }, 1000)
 function shuffleArray(array, otherarray) {
   for (let i = array.length - 1; i > 0; i--) {
