@@ -736,11 +736,11 @@ function startGame() {
   toggleButtons(1)
   z = 1;
   document.getElementById('game').style.display = 'block';
-  bet = prompt("what is ur bet?")
-  bet = parseInt(bet);
   fadeOut();
   terminalEvent('Welcome to ASCII Blackjack.')
-  setTimeout(deal, 2000)
+  if (money == 100) {
+    setTimeout(function() {terminalEvent('Place a bet to begin.')}, 1600)
+  }
 }
 function fadeOut() {
   z -= 0.1;
@@ -807,4 +807,25 @@ function shuffleArray(array, otherarray) {
       [array[i], array[j]] = [array[j], array[i]];
       [otherarray[i], otherarray[j]] = [otherarray[j], otherarray[i]];
   }
+}
+
+function betGame() {
+  bet = prompt("What is your bet?")
+  bet = parseInt(bet);
+  while (bet > money || bet < 1) {
+    if (bet > money) {
+      bet = prompt("You don't have that much money. What is your bet?")
+      bet = parseInt(bet);
+    } else {
+      bet = prompt("Error in value. What is your bet?")
+      bet = parseInt(bet);
+    }
+  }
+  
+  document.getElementById("betbtn").style.color = "darkgrey";
+  document.getElementById("betbtn").style.border = "1px solid darkgrey";
+  document.getElementById("betbtn").style.cursor = "auto";
+  document.getElementById("betbtn").disabled = true;
+  terminalEvent('Your bet is: ' + bet + '$')
+  setTimeout(deal, 2000)
 }

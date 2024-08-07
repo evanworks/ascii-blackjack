@@ -10,6 +10,12 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 	</head>
 	<body>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <p>Some text in the Modal..</p>
+      </div>
+    
+    </div>
     <div id="money">$100</div>
     <div id="title">
       <center>
@@ -32,7 +38,7 @@
       </div>
       <div id="controls">
         <pre id="prePanel" style="left: -50px;">
-          <button onclick="deal(); terminalEvent('Dunno why you pressed this')" style="margin-left: -15px; border: 1.5px solid darkgrey; color: darkgrey; cursor: auto;" disabled>???</button>
+          <button id="betbtn" onclick="betGame();" style="margin-left: -15px;"> PLACE BET</button>
           <button id="hitbtn" onclick="hit()" style="margin-left: -15px;">HIT</button>
           <button id="standbtn" onclick="stand()" style="margin-left: -15px;">STAND</button>
         </pre>
