@@ -102,14 +102,20 @@ a {
   width: 100%;
   height: 100%;
   overflow: auto;
+  border: 1px solid black;
+  height: 50px;
+  width: 180px;
+  top: 50px;
+  left: 50px;
+  font-family: monospace;
+  padding: 10px;
 }
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
+  background-color: #fff;
   margin: auto;
   padding: 20px;
-  border: 2px solid black;
   width: 80%;
 }
 
@@ -126,4 +132,55 @@ a {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+#closeshop {
+  position: relative;
+  top: 10px;
+  left: calc(100vw - 180px);
+}
+#gallery {
+  position: fixed;
+  width: 50vw;
+  left: 120px;
+  top: 110px;
+  height: 80%;
+}
+#preview {
+  position: fixed;
+  border: 2px solid black;
+  width: 30vw;
+  top: 100px;
+  left: calc(60vw);
+  height: 80%;
+}
+.shop-icon {
+  width: 100px;
+  height: 100px;
+  border: 1.5px solid black;
+  margin: 6px;
+  display: inline-block;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 100px;
+  font-family: monospace;
+}
+.shop-icon:hover {
+  position: relative;
+  transform: scale(1.01);
+  border: 1.5px solid dimgrey;
+  cursor: pointer;
+}
+.shop-icon:active {
+  position: relative;
+  transform: scale(0.98);
+  border: 1.5px solid darkgrey;
+}
+@media only screen and (max-width: 1000px) {
+  #computercards {
+    left: 150px;
+  } 
+  #playercards {
+    left: 150px;
+    top: calc(100vh - 400px);
+  }
 }

@@ -10,11 +10,21 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 	</head>
 	<body>
+    <div id="shop" style="display: none; position: relative; height: 48vh; width: 95vw;">
+      <button onclick="location.reload()" id="closeshop">Close Shop</button>
+      <div id="gallery">
+        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
+        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
+        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
+        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
+        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
+      </div>
+      <div id="preview"></div>
+    </div>
     <div id="myModal" class="modal">
       <div class="modal-content">
-        <p>Some text in the Modal..</p>
+        Enter bet:
       </div>
-    
     </div>
     <div id="money">$100</div>
     <div id="title">
@@ -48,15 +58,6 @@
         <pre id="h2" style="left: 100px;"></pre>
         <div id="newCards" style="position: absolute; left: 200px;"></div>
       </div>
-    </div>
-    <div id="shop" style="display: none;">
-      SHOP
-      <br/><br/>
-      no stuff here yet :/
-      <br/><br/>
-      <br/><br/>
-      <br/><br/>
-      [insert promotion here]
     </div>
   </body>
   <script src="main.js"></script>

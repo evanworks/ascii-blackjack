@@ -761,9 +761,8 @@ function fadeIn() {
 
 function openShop() {
   z = 1;
-  document.getElementById('shop').style.display = 'block';
   fadeOut();
-  localStorage.clear()
+  setTimeout(function(){document.getElementById('shop').style.display = 'block';}, 200)
 }
 
 function toggleButtons(toggle) {
@@ -811,8 +810,9 @@ function shuffleArray(array, otherarray) {
 
 function betGame() {
   bet = prompt("What is your bet?")
+  //document.getElementById("myModal").style.display = "block";
   bet = parseInt(bet);
-  while (bet > money || bet < 1) {
+  while (bet > money || bet < 1 || !bet) {
     if (bet > money) {
       bet = prompt("You don't have that much money. What is your bet?")
       bet = parseInt(bet);
@@ -826,6 +826,6 @@ function betGame() {
   document.getElementById("betbtn").style.border = "1px solid darkgrey";
   document.getElementById("betbtn").style.cursor = "auto";
   document.getElementById("betbtn").disabled = true;
-  terminalEvent('Your bet is: ' + bet + '$')
+  terminalEvent('Your bet is: $' + bet)
   setTimeout(deal, 2000)
 }
