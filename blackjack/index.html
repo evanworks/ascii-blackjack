@@ -10,16 +10,19 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 	</head>
 	<body>
+    <div id="version" style="display: none;">08-16-24_0</div>
     <div id="shop" style="display: none; position: relative; height: 48vh; width: 95vw;">
       <button onclick="location.reload()" id="closeshop">Close Shop</button>
       <div id="gallery">
-        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
-        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
-        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
-        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
-        <div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div><div class="shop-icon"></div>
+        <div class="shop-icon" onclick="prevItem(0)"><center><img src="img/shop-0.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
+        <div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
+        <div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
+        <div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
+        <div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
       </div>
-      <div id="preview"></div>
+      <div id="preview">
+
+      </div>
     </div>
     <div id="myModal" class="modal">
       <div class="modal-content">
@@ -58,6 +61,9 @@
         <pre id="h2" style="left: 100px;"></pre>
         <div id="newCards" style="position: absolute; left: 200px;"></div>
       </div>
+    </div>
+    <div id="reset" onclick="reset()">
+      <img src="img/reset.png" style="width: 25px;">
     </div>
   </body>
   <script src="main.js"></script>

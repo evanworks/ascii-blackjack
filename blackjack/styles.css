@@ -163,6 +163,7 @@ a {
   margin-bottom: 4px;
   font-size: 100px;
   font-family: monospace;
+  user-select: none;
 }
 .shop-icon:hover {
   position: relative;
@@ -183,4 +184,68 @@ a {
     left: 150px;
     top: calc(100vh - 400px);
   }
+}
+@media only screen and (max-height: 700px) {
+  #terminal {
+    top: 75px;
+  }
+  #controls {
+    top: calc(100vh - 250px);
+  }
+  #player-cards {
+    top: 50px;
+  }
+}
+#reset {
+  position: fixed;
+  top: 95vh;
+  left: 97vw;
+}
+#reset:hover {
+  transform: scale(1.1);
+}
+#reset:active {
+  transform: scale(0.9);
+}
+.shop-icon img {
+  width: 50px;
+  margin-bottom: 15px;
+}
+.selected {
+  position: relative;
+  transform: scale(0.98);
+  border: 1.5px solid darkgrey;
+}
+.locked {
+  position: relative;
+  transform: scale(1);
+  border: 1.5px solid darkgrey;
+}
+.shop-icon.selected:hover {
+  position: relative;
+  transform: scale(0.98);
+  border: 1.5px solid darkgrey;
+  cursor: auto;
+}
+.shop-icon.locked:hover {
+  position: relative;
+  transform: scale(1);
+  border: 1.5px solid darkgrey;
+  cursor: auto;
+}
+.heading {
+  margin-top: 165px;
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: 600;
+}
+.bold {
+  font-weight: 900;
+}
+.description {
+  font-family: monospace;
+  margin-top: 15px;
+  padding-left: 20px;
+  padding-right: 10px;
+  font-size: 15px;
 }

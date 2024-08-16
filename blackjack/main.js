@@ -748,6 +748,8 @@ function fadeOut() {
   document.getElementById("title").style.opacity = z;
   if (z > 0) {
     setTimeout(fadeOut, 10);
+  } else {
+    document.getElementById("title").style.display = "none";
   }
 }
 function fadeIn() {
@@ -756,6 +758,8 @@ function fadeIn() {
   document.getElementById("title").style.opacity = z;
   if (z < 1) {
     setTimeout(fadeIn, 10);
+  } else {
+    document.getElementById("title").style.display = "block";
   }
 }
 
@@ -828,4 +832,20 @@ function betGame() {
   document.getElementById("betbtn").disabled = true;
   terminalEvent('Your bet is: $' + bet)
   setTimeout(deal, 2000)
+}
+function reset() {
+  money = 100;
+  localStorage.clear()
+  location.reload()
+}
+
+function prevItem(itemNum) {
+  preview = document.getElementById("preview");
+  if (itemNum == 0) {
+    preview.innerHTML += "<pre class='bold' style='left: -100px;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+    preview.innerHTML += "<pre class='bold'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+    preview.innerHTML += "<pre class='bold' style='left: 100px;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+    preview.innerHTML += "<center><div class='heading'>Default Card Pack</div></center>";
+    preview.innerHTML += "<div class='description'>the default card pack is default :) Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>"
+  }
 }
