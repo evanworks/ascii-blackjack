@@ -1,8 +1,11 @@
     if (localStorage.getItem("money") == "NaN" || localStorage.getItem("money") == undefined) {
       money = 100;
+      gamesPlayed = 100;
       console.log("yes")
     } else {
       money = localStorage.getItem("money");
+      gamesPlayed = localStorage.getItem("gamesPlayed")
+      console.log("no");
     }
     let gameResult = false;
 		let turn = 0;
@@ -300,99 +303,99 @@
 		\`--------'`,
 		`
 		.--------.
-		|J \~~|  |
+		|J \~~|   |
 		|♣ /'o   |
-		| ([ +)  |
+		| ([ +)   |
 		|  o,|  ♣|
-		| |~~\  J|
+		| |~~\   J|
 		\`--------'`, 
 		`
 		.--------.
-		|J \~~|  |
+		|J \~~|   |
 		|♠ /'o   |
-		| ({./)  |
+		| ({./)   |
 		|  o,|  ♠|
-		| |~~\  J|
+		| |~~\   J|
 		\`--------'`, 
 		`
 		.--------.
-		|J \~~|  |
+		|J \~~|   |
 		|♥ /'o   |
-		| (/x )  |
+		| (/x )   |
 		|  o,|  ♥|
-		| |~~\  J|
+		| |~~\   J|
 		\`--------'`, 
 		`
 		.--------.
-		|J \~~|  |
+		|J \~~|   |
 		|♦ /'o   |
-		| (/|\)  |
+		| (/|\)   |
 		|  o,|  ♦|
-		| |~~\  J|
+		| |~~\   J|
 		\`--------'`,
 		`
 		.--------.
-		|Q \~~|  |
+		|Q \~~|   |
 		|♣ /'o   |
 		| ([ +)  |
 		|  o,|  ♣|
-		| |~~\  Q|
+		| |~~\   Q|
 		\`--------'`, 
 		`
 		.--------.
-		|Q \~~|  |
+		|Q \~~|   |
 		|♠ /'o   |
 		| ({./)  |
 		|  o,|  ♠|
-		| |~~\  Q|
+		| |~~\   Q|
 		\`--------'`, 
 		`
 		.--------.
-		|Q \~~|  |
+		|Q \~~|   |
 		|♥ /'o   |
 		| (/x )  |
 		|  o,|  ♥|
-		| |~~\  Q|
+		| |~~\   Q|
 		\`--------'`, 
 		`
 		.--------.
-		|Q \~~|  |
+		|Q \~~|   |
 		|♦ /'o   |
 		| (/|\)  |
 		|  o,|  ♦|
-		| |~~\  Q|
+		| |~~\   Q|
 		\`--------'`,
 		`
 		.--------.
-		|K \~~|  |
+		|K \~~|   |
 		|♣ /'o   |
 		| ([ +)  |
 		|  o,|  ♣|
-		| |~~\  K|
+		| |~~\   K|
 		\`--------'`, 
 		`
 		.--------.
-		|K \~~|  |
+		|K \~~|   |
 		|♠ /'o   |
 		| ({./)  |
 		|  o,|  ♠|
-		| |~~\  K|
+		| |~~\   K|
 		\`--------'`, 
 		`
 		.--------.
-		|K \~~|  |
+		|K \~~|   |
 		|♥ /'o   |
 		| (/x )  |
 		|  o,|  ♥|
-		| |~~\  K|
+		| |~~\   K|
 		\`--------'`, 
 		`
 		.--------.
-		|K \~~|  |
+		|K \~~|   |
 		|♦ /'o   |
 		| (/|\)  |
 		|  o,|  ♦|
-		| |~~\  K|
+		| |~~\   K|
 		\`--------'`,
 		`
 		.--------.
@@ -511,6 +514,7 @@
 		function hit() {
 		  if (turn === 0) {
 		  	if (standH === 0 || standC === 1) {
+          document.getElementById("click").play();
           terminalEvent('Player has hit.')
 		      var cxH = cardsN[Math.floor(Math.random() * (cardsN.length - 0) + 0)];
 		      const newCardDisplayH = document.createElement("pre");
@@ -600,7 +604,7 @@
 		  let i = 0;
 		  while (i < cardsH.length) {
 		    if (cardsH[i] === "A") {
-		      aH += 1; 
+		      aH += 1;
 		      i++;
 		    } else {
 		      totalH += cardsH[i];
@@ -681,15 +685,21 @@
         document.getElementById("standbtn").style.cursor = "auto";
         document.getElementById("standbtn").disabled = true;
         if (person == "H") {
+          document.getElementById('yay').play();
           money = parseInt(money)
           money += bet;
         } else if (person == "C") {
+          document.getElementById('fail').play();
           money -= bet;
         }
         gameResult = true;
+        gamesPlayed = parseInt(gamesPlayed)
+        console.log(gamesPlayed)
+        gamesPlayed += 1;
+        console.log(gamesPlayed)
         setTimeout(function() {
           document.getElementById("game").style.display = "none";
-          location.reload()
+          //location.reload()
         }, 6000)
         z = 0
         setTimeout(fadeIn, 6000)
@@ -698,6 +708,7 @@
 		
 		function stand() {
 		  if (turn === 0) {
+        document.getElementById("click").play();
         terminalEvent('Player has chosen to stand.')
 		    standH = 1;
 		    console.log("H is standing");
@@ -721,7 +732,6 @@
 function terminalEvent(msg) {
   if (allowTerminalMessages) {
     let terminal = document.getElementById("terminal");
-    console.log(terminal)
     let msgtxt = document.createElement("span");
     terminal.appendChild(msgtxt)
     typed = new Typed(msgtxt, {
@@ -733,6 +743,7 @@ function terminalEvent(msg) {
 }
 z = 1
 function startGame() {
+  document.getElementById("click").play();
   toggleButtons(1)
   z = 1;
   document.getElementById('game').style.display = 'block';
@@ -765,8 +776,12 @@ function fadeIn() {
 
 function openShop() {
   z = 1;
+  document.getElementById("click").play();
   fadeOut();
-  setTimeout(function(){document.getElementById('shop').style.display = 'block';}, 200)
+  setTimeout(function() {
+    document.getElementById('shop').style.display = 'block';
+    document.getElementById("version").style.display = "none";
+  }, 200)
 }
 
 function toggleButtons(toggle) {
@@ -793,7 +808,8 @@ function toggleButtons(toggle) {
 
 setInterval(function() {
   document.getElementById("money").innerHTML = "$" + money;
-  localStorage.setItem("money", money)
+  localStorage.setItem("money", money);
+  localStorage.setItem("gamesPlayed", gamesPlayed);
   if (money <= 0) {
     setTimeout(function() {
       setInterval(function() {
@@ -813,6 +829,7 @@ function shuffleArray(array, otherarray) {
 }
 
 function betGame() {
+  document.getElementById("click").play();
   bet = prompt("What is your bet?")
   //document.getElementById("myModal").style.display = "block";
   bet = parseInt(bet);
@@ -838,14 +855,40 @@ function reset() {
   localStorage.clear()
   location.reload()
 }
-
+preview.innerHTML = "";
 function prevItem(itemNum) {
   preview = document.getElementById("preview");
-  if (itemNum == 0) {
-    preview.innerHTML += "<pre class='bold' style='left: -100px;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
-    preview.innerHTML += "<pre class='bold'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
-    preview.innerHTML += "<pre class='bold' style='left: 100px;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
-    preview.innerHTML += "<center><div class='heading'>Default Card Pack</div></center>";
-    preview.innerHTML += "<div class='description'>the default card pack is default :) Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>"
+  preview.innerHTML = "";
+  if (preview.innerHTML == "") {
+    document.getElementById("click").play();
+    if (itemNum == 0) {
+      preview.innerHTML += "<pre class='bold' style='left: -100px;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+      preview.innerHTML += "<pre class='bold'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+      preview.innerHTML += "<pre class='bold' style='left: 100px;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+      preview.innerHTML += "<center><div class='heading' style='background: lightgrey;'><hr/>Default Deck<hr/></div></center>";
+      preview.innerHTML += `<div class='description'>
+      Classic ASCII design. Used as the main deck for 3 years.<br/><br/>
+      <div style="font-weight: 900;">[♠13] [♣13] <span style="color: red;">[♥13] [♦13]</span></div><br/>
+      <div><i>No special properties</i></div>
+      </div>`
+      preview.innerHTML += "<button class='equip-button'>Equip</button>"
+    }
+    if (itemNum == 1) {
+      if (gamesPlayed > 0) {
+        preview.innerHTML += "<pre class='bold' style='color: red; left: -100px;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+        preview.innerHTML += "<pre class='bold' style='color: red;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+        preview.innerHTML += "<pre class='bold' style='color: red; left: 100px;'>"+cardsD[Math.floor(Math.random() * cardsD.length)]+"</pre>";
+        preview.innerHTML += "<center><div class='heading' style='background: lightgrey;'><hr/>Red Deck<hr/></div></center>";
+        preview.innerHTML += `<div class='description'>Let the red cards dominate the deck, because no one likes clubs and spades.
+        <br/><br/>
+        <div style="font-weight: 900;">[♠0] [♣0] <span style='color: red;'>[♥26] [♦26]</span></div><br/>
+        <div>Earn <span style="color: blue; font-weight: 900;">$100</span> when entire hand is hearts and <span style='color: red; font-weight: 900;'>x2</span> when entire hand is diamonds at the end of the game.</div>
+        </div>`
+        preview.innerHTML += "<button class='shop-button' onclick='document.getElementById(`kaching`).play();'>Buy ($150)</button>"
+      } else {
+        preview.innerHTML += `<div class='description' style="font-weight: 900;">Play one game to unlock this deck.
+      </div>`
+      }
+    }
   }
 }

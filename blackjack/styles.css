@@ -235,9 +235,9 @@ a {
 }
 .heading {
   margin-top: 165px;
-  font-size: 30px;
+  font-size: 32px;
   font-family: monospace;
-  font-weight: 600;
+  font-weight: 500;
 }
 .bold {
   font-weight: 900;
@@ -245,9 +245,11 @@ a {
 .description {
   font-family: monospace;
   margin-top: 15px;
-  padding-left: 20px;
-  padding-right: 10px;
-  font-size: 15px;
+  padding-left: 40px;
+  padding-right: 30px;
+  font-size: 16px;
+  font-weight: lighter;
+  text-align: center;
 }
 #version {
   position: fixed;
@@ -257,4 +259,36 @@ a {
 }
 img, #prePanel, pre {
   user-select: none;
+}
+.shop-button {
+  position: fixed;
+  top: 85vh;
+  left: 70vw;
+  font-size: 15px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+.shop-button:hover {
+  transform: scale(1.05);
+  background: black;
+  color: white;
+  transition: 0.1s;
+  border: 2px solid green;
+}
+.shop-button:active {
+  transform: scale(0.9);
+  color: black;
+  background: white;
+  transition: 0.1s;
+}
+.equip-button {
+  position: fixed;
+  top: 85vh;
+  left: 70vw;
+  font-size: 15px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+.equip-button:hover {
+  border: 1.5px solid dimgrey;
 }

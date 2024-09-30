@@ -10,11 +10,16 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
 	</head>
 	<body>
-    <div id="version">08-16-24_1</div>
+    <audio id="click" src="img/click.mp3"></audio>
+    <audio id="fail" src="img/fail.mp3"></audio>
+    <audio id="yay" src="img/yay.mp3"></audio>
+    <audio id="kaching" src="img/kaching.mp3"></audio>
+
+    <div id="version">09-30-24_0</div>
     <div id="shop" style="display: none; position: relative; height: 48vh; width: 95vw;">
-      <button onclick="location.reload()" id="closeshop">Close Shop</button>
+      <button onclick="document.getElementById('click').play();location.reload()" id="closeshop">Close Shop</button>
       <div id="gallery">
-        <div class="shop-icon" onclick="prevItem(0)"><center><img src="img/shop-0.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
+        <div class="shop-icon" onclick="prevItem(0)"><center><img src="img/shop-0.png"></center></div><div class="shop-icon" onclick="prevItem(1)"><center><img src="img/shop-1.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
         <div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
         <div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
         <div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div><div class="shop-icon locked" onclick="prevItem()"><center><img src="img/locked.png"></center></div>
